@@ -1,9 +1,30 @@
-<form class="form d-flex flex-column" style="gap: 1rem;">
-    <input type="text" placeholder="Your email"/>
-    <input type="text" placeholder="Your password"/>
-    <button type="submit">Login</button>
+<form
+  (ngSubmit)="onSubmit(form)"
+  #form="ngForm"
+  class="form d-flex flex-column"
+  style="gap: 1rem"
+>
+  <input
+    ngModel
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Email"
+    required
+    email
+  />
+  <input
+    ngModel
+    type="password"
+    id="password"
+    name="password"
+    placeholder="Password"
+    required
+    minLength="6"
+  />
+  <button type="submit" [disabled]="!form.valid">Login</button>
 </form>
 <div class="d-flex mt-4 justify-content-between align-items-center">
-    <p>Don't have an account?</p>
-    <button class="flex-grow-1 ms-3 bg-dark" (click)="onSignup()">Sign Up!</button>
+  <p>Don't have an account?</p>
+  <button class="flex-grow-1 ms-3 bg-dark" (click)="onSignup()">Signup!</button>
 </div>

@@ -10,3 +10,21 @@
 .logo {
     width: 25%;
 }
+
+input {
+    border: 1px #C8C8C8 solid;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+}
+
+button {
+    padding: 8px;
+    outline: none;
+    border: none;
+    background-color: #e66e0b;
+    color: white;
+}
+button:disabled {
+    background-color: #ccc;
+}
