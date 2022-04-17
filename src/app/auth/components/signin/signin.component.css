@@ -1,0 +1,12 @@
+.form-container {
+    width: 480px;
+    min-height: 320px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.logo {
+    width: 25%;
+}
