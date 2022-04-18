@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { FirebaseError } from '@angular/fire/app';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SigninService } from '../../services/signin.service';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +10,30 @@ import { Router } from '@angular/router';
   styleUrls: ['../signin/signin.component.css'],
 })
 export class RegisterComponent {
-  constructor(private router: Router) {}
+  isLoading = false;
+  error: string | null = null;
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
+  constructor(private router: Router, private signinService: SigninService) {}
+
+  async onSubmit(form: NgForm) {
+    this.isLoading = true;
+    const { email, password, checkPassword } = form.value;
+    if (checkPassword !== password) {
+      return (this.error = 'Password does not match');
+    }
+
+    try {
+      const user = await this.signinService.signupUser(email, password);
+      if (user) this.router.navigateByUrl('home');
+    } catch (error) {
+      const typedError = error as FirebaseError;
+      const errorMessage = this.signinService.formatError(typedError);
+      this.error = errorMessage;
+    }
+
+    this.isLoading = false;
+
+    return;
   }
 
   onSignup() {

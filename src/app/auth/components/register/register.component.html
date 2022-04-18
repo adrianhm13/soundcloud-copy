@@ -1,11 +1,48 @@
-<form (ngSubmit)="onSubmit(form)" #form="ngForm" class="form d-flex flex-column" style="gap: 1rem;">
-    <input ngModel type="text" id="name" name="name" placeholder="Name" required/>
-    <input ngModel type="email" id="email" name="email" placeholder="Email" required/>
-    <input ngModel type="password" id="password" name="password" placeholder="Password" required/>
-    <input ngModel type="password" id="check" name="check" placeholder="Repeat your password" required/>
-    <button type="submit" [disabled]="!form.valid">Signup</button>
+<form
+  (ngSubmit)="onSubmit(form)"
+  #form="ngForm"
+  class="form d-flex flex-column"
+  style="gap: 1rem"
+>
+  <input
+    ngModel
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Name"
+    required
+  />
+  <input
+    ngModel
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Email"
+    required
+  />
+  <input
+    ngModel
+    type="password"
+    id="password"
+    name="password"
+    placeholder="Password"
+    required
+  />
+  <input
+    ngModel
+    type="password"
+    id="checkPassword"
+    name="checkPassword"
+    placeholder="Repeat your password"
+    minlength="6"
+    required
+  />
+  <p class="text-danger">{{ error }}</p>
+  <button type="submit" [disabled]="!form.valid">
+    {{ isLoading ? "Loading" : "Signup" }}
+  </button>
 </form>
 <div class="d-flex mt-4 justify-content-between align-items-center">
-    <p>Do you have an account? </p>
-    <button class="flex-grow-1 ms-3 bg-dark" (click)="onSignup()">Login!</button>
+  <p>Do you have an account?</p>
+  <button class="flex-grow-1 ms-3 bg-dark" (click)="onSignup()">Login!</button>
 </div>

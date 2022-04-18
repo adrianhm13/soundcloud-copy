@@ -20,11 +20,14 @@
     name="password"
     placeholder="Password"
     required
-    minLength="6"
+    minlength="6"
   />
-  <button type="submit" [disabled]="!form.valid">Login</button>
+  <p class="text-danger">{{ error }}</p>
+  <button type="submit" [disabled]="!form.valid">
+    {{ this.isLoading ? "Loading" : "Login" }}
+  </button>
 </form>
 <div class="d-flex mt-4 justify-content-between align-items-center">
   <p>Don't have an account?</p>
-  <button class="flex-grow-1 ms-3 bg-dark" (click)="onSignup()">Signup!</button>
+  <button class="flex-grow-1 ms-3 bg-dark" (click)="onClick()">Signup!</button>
 </div>
